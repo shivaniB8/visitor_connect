@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:host_visitor_connect/common/initializer.dart';
+import 'package:host_visitor_connect/features/profile/bloc/titles_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/bloc/add_foreigner_visitor_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/bloc/blood_grp_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/bloc/check_mobile_number_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/bloc/reason_visit_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/bloc/visitor_document_bloc.dart';
+import 'package:host_visitor_connect/features/visitors/add_visitor/ui1/model/add_indian_visitor.dart';
+import 'package:provider/provider.dart';
+
+class AddForeignerVisitorProviders extends StatelessWidget {
+  final Widget child;
+  final Function(BuildContext)? init;
+  final GlobalKey<FormBuilderState>? formKey;
+  final CheckMobileNumberBloc? checkMobileNumberBloc;
+  final AddForeignerVisitor? addForeignerVisitor;
+  final AddForeignerVisitorBloc? addForeignerVisitorBloc;
+  final TitlesBloc? titlesBloc;
+  final UpdateVisitorInfo? updateVisitorInfo;
+  final BloodGrpBloc? bloodGrpBloc;
+  final ReasonToVisitBloc? reasonToVisitBloc;
+  final VisitorDocumentBloc? visitorDocumentBloc;
+
+  const AddForeignerVisitorProviders(
+      {Key? key,
+      required this.child,
+      this.init,
+      this.formKey,
+      this.checkMobileNumberBloc,
+      this.addForeignerVisitor,
+      this.addForeignerVisitorBloc,
+      this.titlesBloc,
+      this.updateVisitorInfo,
+      this.bloodGrpBloc,
+      this.reasonToVisitBloc,
+      this.visitorDocumentBloc})
+      : super(key: key);
+
+  GlobalKey<FormBuilderState> _getFormKey(BuildContext context) {
+    return formKey ?? GlobalKey<FormBuilderState>();
+  }
+
+  CheckMobileNumberBloc _getCheckMobileNumberBloc(BuildContext context) {
+    return checkMobileNumberBloc ?? CheckMobileNumberBloc();
+  }
+
+  BloodGrpBloc _getBloodGrpBloc(BuildContext context) {
+    return bloodGrpBloc ?? BloodGrpBloc();
+  }
+
+  UpdateVisitorInfo _getUpdateVisitorInfo(BuildContext context) {
+    return updateVisitorInfo ?? UpdateVisitorInfo();
+  }
+
+  TitlesBloc _getTitlesBloc(BuildContext context) {
+    return titlesBloc ?? TitlesBloc();
+  }
+
+  ReasonToVisitBloc _getReasonToVisitBloc(BuildContext context) {
+    return reasonToVisitBloc ?? ReasonToVisitBloc();
+  }
+
+  AddForeignerVisitor _getAddForeignerVisitor(BuildContext context) {
+    return addForeignerVisitor ?? AddForeignerVisitor();
+  }
+
+  AddForeignerVisitorBloc _getAddForeignerVisitorBloc(BuildContext context) {
+    return addForeignerVisitorBloc ?? AddForeignerVisitorBloc();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<GlobalKey<FormBuilderState>>(create: _getFormKey),
+        BlocProvider(create: _getCheckMobileNumberBloc),
+        BlocProvider(create: _getAddForeignerVisitorBloc),
+        BlocProvider(create: _getBloodGrpBloc),
+        BlocProvider(create: _getTitlesBloc),
+        BlocProvider(create: _getReasonToVisitBloc),
+        // BlocProvider(create: _getVisitorDocumentBloc),
+        ChangeNotifierProvider(create: _getUpdateVisitorInfo),
+        ChangeNotifierProvider(create: _getAddForeignerVisitor),
+      ],
+      child: Initializer(
+        init: init,
+        child: child,
+      ),
+    );
+  }
+}

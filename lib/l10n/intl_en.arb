@@ -1,0 +1,16 @@
+{
+  "@@locale": "en",
+  "app_name": "Visitors Connect Host",
+  "login_heading_welcomeMsg": "Welcome Taj Cidade de Goa Horizon",
+  "loginPage_label_enterPassword": "Enter Password",
+  "loginPage_label_password": "Password",
+  "loginPage_label_enterYourMobileNumber": "Enter Mobile Number",
+  "loginPage_label_mobileNo": "Mobile Number",
+  "loginPage_label_doNotRememberPassword": "Don't remember the Password ?",
+  "loginPage_label_forgotPassword": "Forgot Password",
+  "addVisitor_label_uploadPhoto": "Upload Photo",
+  "forgotPasswordScreen_label_forgotPasswordSendPassword": "You will receive a message on your Mobile Number",
+  "mobileNoValidation_label_pleaseEnterMobileNumber": "Please enter Mobile Number",
+  "mobileNoValidation_label_pleaseEnterValidMobileNumber": "Please enter a valid Mobile Number",
+  "formField_error_isEmpty": "{fieldName} is required"
+}
